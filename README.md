@@ -4,7 +4,7 @@
 
 ## Purpose
 
-AWS CloudFormation does not support AWS API Gateway. This is a Lambda-backed custom resource to add support for [AWS Elasticsearch Service](https://aws.amazon.com/elasticsearch-service/) to CloudFormation.
+AWS CloudFormation does not support AWS Elasticsearch Service. This is a Lambda-backed custom resource to add support for [AWS Elasticsearch Service](https://aws.amazon.com/elasticsearch-service/) to CloudFormation.
 
 [This package on NPM](https://www.npmjs.com/package/cfn-elasticsearch-domain)  
 [This package on GitHub](https://www.github.com/andrew-templeton/cfn-elasticsearch-domain)
@@ -87,7 +87,7 @@ You will have this resource installed in every supported Region globally!
 7. Set the Timeout under Advanced Settings to 10 sec
 8. Click the Role dropdown then click "Basic Execution Role". This will pop out a new window.
 9. Select IAM Role, then select option "Create a new IAM Role"
-10. Name the role `lambda_cfn_api_gateway_resource` (or something descriptive)
+10. Name the role `lambda_cfn_elasticsearch_domain` (or something descriptive)
 11. Click "View Policy Document", click "Edit" on the right, then hit "OK"
 12. Copy and paste the [`./execution-policy.json`](./execution-policy.json) document.
 13. Hit "Allow". The window will close. Go back to the first window if you are not already there.
