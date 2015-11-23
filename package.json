@@ -1,0 +1,35 @@
+{
+  "name": "cfn-elasticsearch-domain",
+  "version": "0.1.1",
+  "description": "AWS CloudFormation Custom Lambda Resource | AWS Elasticsearch Domain",
+  "main": "index.js",
+  "scripts": {
+    "cfn-lambda-deploy": "chmod +x ./node_modules/cfn-lambda/deploy.sh && ./node_modules/cfn-lambda/deploy.sh;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrew-templeton/cfn-elasticsearch-domain.git"
+  },
+  "keywords": [
+    "aws",
+    "cloudformation",
+    "lambda",
+    "backed",
+    "custom",
+    "resource",
+    "elasticsearch",
+    "elastic",
+    "search",
+    "es",
+    "domain"
+  ],
+  "author": "Andrew Templeton <andrw.tmplton@gmail.com> (https://github.com/andrew-templeton)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrew-templeton/cfn-elasticsearch-domain/issues"
+  },
+  "homepage": "https://github.com/andrew-templeton/cfn-elasticsearch-domain#readme",
+  "dependencies": {
+    "cfn-lambda": "0.8.0"
+  }
+}

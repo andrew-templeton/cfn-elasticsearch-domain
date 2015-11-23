@@ -1,0 +1,114 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Custom::ElasticsearchDomain sample template",
+  "Parameters": {
+    "ElasticsearchDomainCustomResourceLambdaName": {
+      "Type": "String",
+      "Default": "cfn-elasticsearch-domain-0-1-1",
+      "Description": "The name of the ElasticseachDomain Lambda you deployed to test this stack."
+    },
+    "ElasticsearchDomainName": {
+      "Type": "String",
+      "Default": "mysearchdomain",
+      "Description": "The name of the Elasticsearch Domain you will launch",
+      "AllowedPattern": "[a-z][a-z0-9\\-]+"
+    },
+    "anElasticsearchDomainClusterNodeCount": {
+      "Type": "Number",
+      "Default": "1",
+      "Description": "Number of nodes to build into the Elasticsearch Domain Cluster."
+    },
+    "anElasticsearchDomainClusterNodeSize": {
+      "Type": "String",
+      "Description": "Size of nodes to build into the Elasticsearch Domain Cluster.",
+      "Default": "m3.medium.elasticsearch",
+      "AllowedValues": [
+        "m3.medium.elasticsearch",
+        "m3.large.elasticsearch",
+        "m3.xlarge.elasticsearch",
+        "m3.2xlarge.elasticsearch",
+        "t2.micro.elasticsearch",
+        "t2.small.elasticsearch",
+        "t2.medium.elasticsearch",
+        "r3.large.elasticsearch",
+        "r3.xlarge.elasticsearch",
+        "r3.2xlarge.elasticsearch",
+        "r3.4xlarge.elasticsearch",
+        "r3.8xlarge.elasticsearch",
+        "i2.xlarge.elasticsearch",
+        "i2.2xlarge.elasticsearch"
+      ]
+    }
+  },
+  "Conditions": {
+  },
+  "Resources": {
+    "MyElasticsearchDomain": {
+      "Type": "Custom::ElasticsearchDomain",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::Join": [
+            ":",
+            [
+              "arn",
+              "aws",
+              "lambda",
+              {
+                "Ref": "AWS::Region"
+              },
+              {
+                "Ref": "AWS::AccountId"
+              },
+              "function",
+              {
+                "Ref": "ElasticsearchDomainCustomResourceLambdaName"
+              }
+            ]
+          ]
+        },
+        "DomainName": {
+          "Ref": "ElasticsearchDomainName"
+        },
+        "AccessPolicies": {
+          "Fn::Join": [
+            "",
+            [
+              "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":[\"*\"]},\"Action\":[\"es:*\"],\"Resource\":\"arn:aws:es:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":domain/",
+              {
+                "Ref": "ElasticsearchDomainName"
+              },
+              "/*\"}]}"
+            ]
+          ]
+        },
+        "ElasticsearchClusterConfig": {
+          "InstanceCount": {
+            "Ref": "anElasticsearchDomainClusterNodeCount"
+          },
+          "InstanceType": {
+            "Ref": "anElasticsearchDomainClusterNodeSize"
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "anElasticsearchDomainEndpoint": {
+      "Description": "Click here for the Elasticsearch Domain's Endpoint",
+      "Value": {
+        "Fn::GetAtt": [
+          "MyElasticsearchDomain",
+          "Endpoint"
+        ]
+      }
+    }
+  }
+}
