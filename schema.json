@@ -35,11 +35,11 @@
         },
         "Iops": {
           "type": "string",
-          "pattern": "^\\d$"
+          "pattern": "^\\d+$"
         },
         "VolumeSize": {
           "type": "string",
-          "pattern": "^\\d$"
+          "pattern": "^\\d+$"
         },
         "VolumeType": {
           "type": "string",
