@@ -4,7 +4,7 @@
   "description": "AWS CloudFormation Custom Lambda Resource | AWS Elasticsearch Domain",
   "main": "index.js",
   "scripts": {
-    "cfn-lambda-deploy": "chmod +x ./node_modules/cfn-lambda/deploy.sh && ./node_modules/cfn-lambda/deploy.sh;"
+    "cfn-lambda-deploy": "node ./node_modules/cfn-lambda/deploy.js"
   },
   "repository": {
     "type": "git",
