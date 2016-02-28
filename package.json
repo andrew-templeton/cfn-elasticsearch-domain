@@ -1,6 +1,6 @@
 {
   "name": "cfn-elasticsearch-domain",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "AWS CloudFormation Custom Lambda Resource | AWS Elasticsearch Domain",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,6 @@
   },
   "homepage": "https://github.com/andrew-templeton/cfn-elasticsearch-domain#readme",
   "dependencies": {
-    "cfn-lambda": "0.8.0"
+    "cfn-lambda": "0.8.3"
   }
 }

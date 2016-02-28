@@ -1,6 +1,9 @@
 
 # cfn-elasticsearch-domain
 
+# NOTICE - This is now supported natively by AWS [as seen here](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticsearch-domain.html). Thanks to contributors and friends! Always nice when AWS catches up to us :)
+
+This still works, but you are better off using native support.
 
 ## Purpose
 
