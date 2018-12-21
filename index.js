@@ -44,7 +44,7 @@ var Update = CfnLambda.SDKAlias({
 });
 
 function getPhysicalId(data, params) {
-  return CfnLambda.Environment.AccountId + '/' + params.DomainName;
+  return params.DomainName;
 }
 
 exports.handler = CfnLambda({
@@ -79,7 +79,13 @@ function CheckProcessComplete(params, reply, notDone) {
       return notDone();
     }
     console.log('Status is Processing: false! %j', domain);
-    reply(null, domain.DomainStatus.DomainId, {
+    // NOTE: we are using the response from describeElasticsearchDomain here instead of 
+    // the DomainName passed through CR params, as getPhysicalId does
+    // this is what is responsible for returning the CR's physical ID on creation,
+    //  used by references in CFN.
+    // TODO: to make the returnPhysicalId key usage in SDKAlias be intuitive,
+    // test this with Params.DomainName and change if it works
+    reply(null, domain.DomainStatus.DomainName, {
       Endpoint: domain.DomainStatus.Endpoint
     });
   });
